@@ -1,0 +1,15 @@
+@import './colors';
+@import './typography';
+
+body {
+  font-family: $font-face;
+  text-align: center;
+}
+
+h1 {
+  font-size: $title-size;
+}
+
+.description {
+  font-size: $description-font-size;
+}

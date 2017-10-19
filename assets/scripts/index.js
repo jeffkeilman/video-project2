@@ -5,6 +5,12 @@ const config = require('./config')
 
 $(() => {
   setAPIOrigin(location, config)
+  // default state
+  $('#login').hide()
+  $('#db').hide()
+  $('#login').hide()
+  $('#nav-logout').hide()
+  $('#nav-changePass').hide()
 })
 
 // use require with a reference to bundle the file and use it in this file
