@@ -46,6 +46,7 @@ const addEventHandlers = function () {
   $('#nav-login').on('click', ui.displayLogin)
   $('#nav-home').on('click', ui.displayHome)
   $('#nav-videos').on('click', ui.displayVideos)
+  $('#nav-changePass').on('click', ui.displayChangePass)
   $('#nav-logout').on('click', _onLogout)
   $('#loginRegisterForm').on('submit', _onLoginRegister)
   $('#isRegister').on('change', ui.showHidePassConf)

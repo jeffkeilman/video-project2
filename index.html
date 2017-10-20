@@ -71,7 +71,19 @@
       </section>
 
       <section id="changePass">
-
+        <div class="col-xs-4"></div>
+        <form class="col-xs-4 change-pass-box" id="changePassForm">
+          <div class="form-group">
+            <label for="prevPassLabel">Previous Password</label>
+            <input name="passwords[old]" type="password" class="form-control" id="oldPassLabel" aria-describedby="emailHelp" placeholder="Previous Password">
+          </div>
+          <div class="form-group">
+            <label for="curPassLabel">New Password</label>
+            <input name="passwords[new]" type="password" class="form-control" id="newPassLabel" placeholder="New Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="col-xs-4"></div>
       </section>
 
       <section id="db">

@@ -26,6 +26,17 @@ const displayHome = function () {
   _flipViews($('#intro'))
 }
 
+const displayVideos = function () {
+  // TODO: Database queries perhaps (each time? Just after login?) and display
+  _navBarShift($('#nav-videos'))
+  _flipViews($('#db'))
+}
+
+const displayChangePass = function () {
+  _navBarShift($('#nav-changePass'))
+  _flipViews($('#changePass'))
+}
+
 const signOnSuccess = function (data) {
   store.user = data.user
 
@@ -56,12 +67,6 @@ const restoreInitial = function () {
   $('#nav-home').show()
   $('#nav-login').show()
   $('#intro').show()
-}
-
-const displayVideos = function () {
-  // TODO: Database queries perhaps (each time? Just after login?) and display
-  _navBarShift($('#nav-videos'))
-  _flipViews($('#db'))
 }
 
 const registerSuccess = function () {
@@ -148,5 +153,6 @@ module.exports = {
   signOnFailure,
   displayVideos,
   restoreInitial,
-  signOffSuccess
+  signOffSuccess,
+  displayChangePass
 }
