@@ -1,9 +1,19 @@
+const store = require('../store')
+
 const programViews = [
   'intro',
   'login',
   'changePass',
   'db'
 ]
+
+const programNav = [
+  'nav-login',
+  'nav-videos',
+  'nav-changePass',
+  'nav-logout'
+]
+
 const programInfo = $('#programInfo')
 
 const displayLogin = function () {
@@ -16,9 +26,9 @@ const displayHome = function () {
   _flipViews($('#intro'))
 }
 
-const signOnSuccess = function () {
-  // hide login, login page
-  // display logout, change pass
+const signOnSuccess = function (data) {
+  store.user = data.user
+
   const navVideos = $('#nav-videos')
 
   navVideos.show()
@@ -29,6 +39,23 @@ const signOnSuccess = function () {
   _flipViews($('#db'))
 
   // TODO: Display db UI
+}
+
+const signOffSuccess = function () {
+  // delete user, restore initial state of app
+  store.user = null
+  restoreInitial()
+}
+
+const restoreInitial = function () {
+  // default state
+  _hideViews()
+  _hideNav()
+  _clearLogin(true, false)
+  $('#programInfo').hide()
+  $('#nav-home').show()
+  $('#nav-login').show()
+  $('#intro').show()
 }
 
 const displayVideos = function () {
@@ -84,10 +111,20 @@ const _navBarShift = function (li) {
 }
 
 const _flipViews = function (newView) {
+  _hideViews()
+  newView.show()
+}
+
+const _hideViews = function () {
   programViews.forEach((view) => {
     $('#' + view).hide()
   })
-  newView.show()
+}
+
+const _hideNav = function () {
+  programNav.forEach((nav) => {
+    $('#' + nav).hide()
+  })
 }
 
 const _clearLogin = function (all, passwordMismatch) {
@@ -109,5 +146,7 @@ module.exports = {
   passwordMismatch,
   signOnSuccess,
   signOnFailure,
-  displayVideos
+  displayVideos,
+  restoreInitial,
+  signOffSuccess
 }

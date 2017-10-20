@@ -9,6 +9,16 @@ const _onLoginRegister = function (event) {
   $('#isRegister').is(':checked') ? _register(data) : _login(data)
 }
 
+const _onLogout = function (event) {
+  // make API call and UI call
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.logout(data)
+    .then(ui.signOffSuccess)
+    .catch(ui.signOffFailure)
+}
+
 const _register = function (data) {
   if (data.credentials.password === data.credentials.password_confirmation) {
     api.register(data)
@@ -36,6 +46,7 @@ const addEventHandlers = function () {
   $('#nav-login').on('click', ui.displayLogin)
   $('#nav-home').on('click', ui.displayHome)
   $('#nav-videos').on('click', ui.displayVideos)
+  $('#nav-logout').on('click', _onLogout)
   $('#loginRegisterForm').on('submit', _onLoginRegister)
   $('#isRegister').on('change', ui.showHidePassConf)
 }
