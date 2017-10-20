@@ -1,7 +1,6 @@
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
-const store = require('../store.js')
 
 const _onLoginRegister = function (event) {
   event.preventDefault()
@@ -30,14 +29,15 @@ const _login = function (data) {
   }
   api.login(data)
     .then(ui.signOnSuccess)
-    .then(/*LOAD DB*/)
     .catch(ui.signOnFailure)
 }
 
 const addEventHandlers = function () {
   $('#nav-login').on('click', ui.displayLogin)
   $('#nav-home').on('click', ui.displayHome)
+  $('#nav-videos').on('click', ui.displayVideos)
   $('#loginRegisterForm').on('submit', _onLoginRegister)
+  $('#isRegister').on('change', ui.showHidePassConf)
 }
 
 module.exports = {

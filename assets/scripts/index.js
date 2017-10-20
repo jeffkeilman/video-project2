@@ -13,6 +13,9 @@ $(() => {
   $('#login').hide()
   $('#nav-logout').hide()
   $('#nav-changePass').hide()
+  $('#nav-videos').hide()
+  $('#programInfo').hide()
+  $('#confirmPassword').hide()
 })
 
 // use require with a reference to bundle the file and use it in this file

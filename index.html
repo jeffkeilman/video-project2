@@ -21,12 +21,14 @@
             <ul class="nav navbar-nav">
               <li class="active" id="nav-home"><a href="#">Home</a></li>
               <li id="nav-login"><a href="#">Login</a></li>
-              <li id="nav-logout"><a href="#">Logout</a></li>
+              <li id="nav-videos"><a href="#">Videos</a></li>
               <li id="nav-changePass"><a href="#">Change Password</a></li>
+              <li id="nav-logout"><a href="#">Logout</a></li>
             </ul>
           </div>
         </nav>
       </header>
+      <div class="alert" id="programInfo" role="alert"></div>
 
       <section id="intro">
         <div class="col-xs-1 col-md-3"></div>
@@ -50,11 +52,11 @@
           </div>
           <div class="form-group">
             <label for="passwordLabel">Password</label>
-            <input name="credentials[password]" type="password" class="form-control" id="passwordLabel" placeholder="Password">
+            <input name="credentials[password]" type="password" class="form-control" id="passwordText" placeholder="Password">
           </div>
           <div class="form-group" id="confirmPassword">
             <label for="passwordLabel">Confirm Password</label>
-            <input name="credentials[password_confirmation]" type="password" class="form-control" id="passwordConfLabel" placeholder="Password Confirmation">
+            <input name="credentials[password_confirmation]" type="password" class="form-control" id="passwordConfText" placeholder="Password Confirmation">
           </div>
           <div class="form-check">
             <!-- New users will be able to register, input will be inserted automatically -->
@@ -66,6 +68,10 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div class="col-xs-4"></div>
+      </section>
+
+      <section id="changePass">
+
       </section>
 
       <section id="db">
