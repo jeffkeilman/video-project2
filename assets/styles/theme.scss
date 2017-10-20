@@ -14,10 +14,24 @@ h1 {
   font-size: $description-font-size;
 }
 
+.video-area {
+  background-color: $video-area-color;
+  border-style: outset;
+  height: $video-area-height;
+}
+
 .login-box {
   border-style: outset;
 }
 
 .change-pass-box {
   border-style: outset;
+}
+
+.title-label {
+
+}
+
+.url-label {
+
 }
