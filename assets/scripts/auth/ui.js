@@ -53,9 +53,22 @@ const signOnSuccess = function (data) {
 }
 
 const signOffSuccess = function () {
-  // delete user, restore initial state of app
   store.user = null
   restoreInitial()
+}
+
+const signOffFailure = function () {
+  _alert('danger', 'Failed to sign off. Something went very wrong.')
+}
+
+const changePassSuccess = function () {
+  _alert('success', 'Password changed!')
+  _clearChangePass()
+}
+
+const changePassFailure = function () {
+  _alert('danger', 'Failed to change password. Perhaps old password didn\'t match?')
+  _clearChangePass()
 }
 
 const restoreInitial = function () {
@@ -63,6 +76,7 @@ const restoreInitial = function () {
   _hideViews()
   _hideNav()
   _clearLogin(true, false)
+  _clearChangePass()
   $('#programInfo').hide()
   $('#nav-home').show()
   $('#nav-login').show()
@@ -142,6 +156,11 @@ const _clearLogin = function (all, passwordMismatch) {
   if (all) { $('#emailLabel').val('') }
 }
 
+const _clearChangePass = function () {
+  $('#newPassText').val('')
+  $('#oldPassText').val('')
+}
+
 module.exports = {
   displayLogin,
   displayHome,
@@ -154,5 +173,8 @@ module.exports = {
   displayVideos,
   restoreInitial,
   signOffSuccess,
-  displayChangePass
+  signOffFailure,
+  displayChangePass,
+  changePassSuccess,
+  changePassFailure
 }

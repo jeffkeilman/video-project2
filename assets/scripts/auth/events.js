@@ -10,13 +10,22 @@ const _onLoginRegister = function (event) {
 }
 
 const _onLogout = function (event) {
-  // make API call and UI call
   event.preventDefault()
   const data = getFormFields(event.target)
 
   api.logout(data)
     .then(ui.signOffSuccess)
     .catch(ui.signOffFailure)
+}
+
+const _onChangePass = function (event) {
+  // make API call and UI call
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.changePass(data)
+    .then(ui.changePassSuccess)
+    .catch(ui.changePassFailure)
 }
 
 const _register = function (data) {
@@ -49,6 +58,7 @@ const addEventHandlers = function () {
   $('#nav-changePass').on('click', ui.displayChangePass)
   $('#nav-logout').on('click', _onLogout)
   $('#loginRegisterForm').on('submit', _onLoginRegister)
+  $('#changePass').on('submit', _onChangePass)
   $('#isRegister').on('change', ui.showHidePassConf)
 }
 
