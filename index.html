@@ -136,6 +136,30 @@
           </div>
           <div class="col-xs-3 col-md-2"></div>
         </div>
+        <div class="row">
+          <div class="col-xs-4"></div>
+          <form class="col-xs-4" id="addVideoForm">
+            <div class="form-group">
+              <label for="titleLabel">Title</label>
+              <input name="video[title]" type="text" class="form-control" placeholder="Title" id="titleText">
+            </div>
+            <div class="form-group">
+              <label for="urlLabel">URL</label>
+              <input name="video[url]" type="text" class="form-control" placeholder="URL" id="urlText">
+            </div>
+            <div class="form-group">
+              <label for="youtuberLabel">Youtuber</label>
+              <input name="video[youtuber]" type="text" class="form-control" placeholder="Youtuber" id="youtuberText">
+            </div>
+            <div class="form-group">
+              <label for="descriptionLabel">Description</label>
+              <textarea name="video[description]" class="form-control" rows="3" id="descriptionText"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" id="addCancelButton">Cancel</button>
+          </form>
+          <div class="col-xs-4"></div>
+        </div>
       </section>
     </body>
 </html>

@@ -3,11 +3,13 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./auth/events')
+const videoEvents = require('./videos/events')
 const authUI = require('./auth/ui')
 
 $(() => {
   setAPIOrigin(location, config)
   authEvents.addEventHandlers()
+  videoEvents.addEventHandlers()
   authUI.restoreInitial()
 })
 

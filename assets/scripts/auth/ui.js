@@ -1,4 +1,5 @@
 const store = require('../store')
+const alert = require('../alert')
 
 const programViews = [
   'intro',
@@ -13,8 +14,6 @@ const programNav = [
   'nav-changePass',
   'nav-logout'
 ]
-
-const programInfo = $('#programInfo')
 
 const displayLogin = function () {
   _navBarShift($('#nav-login'))
@@ -58,16 +57,16 @@ const signOffSuccess = function () {
 }
 
 const signOffFailure = function () {
-  _alert('danger', 'Failed to sign off. Something went very wrong.')
+  alert('danger', 'Failed to sign off. Something went very wrong.')
 }
 
 const changePassSuccess = function () {
-  _alert('success', 'Password changed!')
+  alert('success', 'Password changed!')
   _clearChangePass()
 }
 
 const changePassFailure = function () {
-  _alert('danger', 'Failed to change password. Perhaps old password didn\'t match?')
+  alert('danger', 'Failed to change password. Perhaps old password didn\'t match?')
   _clearChangePass()
 }
 
@@ -78,31 +77,32 @@ const restoreInitial = function () {
   _clearLogin(true, false)
   _clearChangePass()
   $('#programInfo').hide()
+  $('#addVideoForm').hide()
   $('#nav-home').show()
   $('#nav-login').show()
   $('#intro').show()
 }
 
 const registerSuccess = function () {
-  _alert('success', 'All set! Please login and get started!')
+  alert('success', 'All set! Please login and get started!')
 
   _clearLogin()
 }
 
 const registerFailure = function () {
-  _alert('danger', 'Hmm... We might already have an account under that email address.')
+  alert('danger', 'Hmm... We might already have an account under that email address.')
 
   _clearLogin()
 }
 
 const passwordMismatch = function () {
-  _alert('danger', 'Hmm... Those two passwords didn\'t match.')
+  alert('danger', 'Hmm... Those two passwords didn\'t match.')
 
   _clearLogin(false, true)
 }
 
 const signOnFailure = function () {
-  _alert('danger', 'Email/password combination not found.')
+  alert('danger', 'Email/password combination not found.')
 
   _clearLogin()
 }
@@ -113,15 +113,6 @@ const showHidePassConf = function () {
   } else {
     $('#confirmPassword').hide()
   }
-}
-
-const _alert = function (type, message) {
-  programInfo.addClass('alert-' + type)
-  programInfo.text(message)
-  programInfo.show().delay(5000).fadeOut(() => {
-    programInfo.removeClass('alert-' + type)
-    programInfo.text('')
-  })
 }
 
 const _navBarShift = function (li) {
