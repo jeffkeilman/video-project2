@@ -9,12 +9,21 @@ const hideAdd = function () {
   $('#addVideoForm').hide()
 }
 
-const createVideo = function () {
-  console.log('YAY!')
+const createVideo = function (data) {
+  hideAdd()
+  alert('success', 'Video added!')
+  $('#videoArea').append(buildVideo(data.video))
 }
 
 const createVideoFailure = function () {
   alert('danger', 'Oh no. We couldn\'t add a video. This is bad.')
+}
+
+const buildVideo = function (video) {
+  const newRow = document.createElement('div')
+  return $(newRow).addClass('row').html('<div class="col-xs-6">' + video.title +
+    '</div><div class="col-xs-6"><a href="' + video.url + '" target="_blank">' +
+    video.url + '</div>')
 }
 
 const _clearAdd = function () {
