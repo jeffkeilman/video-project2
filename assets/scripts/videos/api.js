@@ -32,8 +32,21 @@ const show = function (id) {
   })
 }
 
+const update = function (data) {
+  console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + '/videos/' + store.user.currVideo.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   create,
   loadVideos,
-  show
+  show,
+  update
 }
