@@ -44,6 +44,15 @@ const _onUpdateSubmit = function (event) {
   } else { ui.noUpdate() }
 }
 
+const _onDeleteClick = function () {
+  const id = $('#selectVideo').text().split('.')[0]
+  if (!isNaN(id)) {
+    api.deleteVideo(id)
+      .then(ui.deleteSuccess)
+      .catch(ui.deleteFailure)
+  } else { ui.noID() }
+}
+
 const _cleanupVideo = function (video) {
   let updateCount = 0
   for (const key in video) {
@@ -62,6 +71,7 @@ const addEventHandlers = function () {
   $('#infoButton').on('click', _onInfoClick)
   $('#updateButton').on('click', _onUpdateClick)
   $('#updateButtonSubmit').on('click', _onUpdateSubmit)
+  $('#deleteButton').on('click', _onDeleteClick)
   $('#addVideoForm').on('submit', _onVideoSubmit)
 }
 

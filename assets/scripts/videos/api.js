@@ -33,7 +33,6 @@ const show = function (id) {
 }
 
 const update = function (data) {
-  console.log(data)
   return $.ajax({
     url: config.apiOrigin + '/videos/' + store.user.currVideo.id,
     method: 'PATCH',
@@ -44,9 +43,20 @@ const update = function (data) {
   })
 }
 
+const deleteVideo = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + '/videos/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   create,
   loadVideos,
   show,
-  update
+  update,
+  deleteVideo
 }

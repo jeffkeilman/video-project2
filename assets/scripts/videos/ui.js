@@ -105,6 +105,15 @@ const noUpdate = function () {
   alert('warning', 'No fields changed... did you mean to do that?')
 }
 
+const deleteSuccess = function () {
+  // TODO: Rebuild with stored data
+  alert('success', 'Video deleted!')
+}
+
+const deleteFailure = function () {
+  alert('danger', 'Unable to delete video...')
+}
+
 const _crudButtonsDisabled = function (option) {
   videoCRUD.forEach((button) => {
     $('#' + button).prop('disabled', option)
@@ -166,5 +175,7 @@ module.exports = {
   showAddPrefill,
   updateSuccess,
   updateFailure,
-  noUpdate
+  noUpdate,
+  deleteSuccess,
+  deleteFailure
 }
