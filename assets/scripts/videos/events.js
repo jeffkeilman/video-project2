@@ -4,7 +4,6 @@ const store = require('../store')
 const api = require('./api')
 
 const _onVideoSubmit = function (event) {
-  console.log(event.target)
   event.preventDefault()
   const data = getFormFields(event.target)
   data.user_id = store.user.id
@@ -36,6 +35,7 @@ const _onUpdateClick = function () {
 const _onUpdateSubmit = function (event) {
   const data = getFormFields(document.getElementById('addVideoForm'))
   const updateCount = _cleanupVideo(data.video)
+  ui.updateVideos(data.video)
 
   if (updateCount > 0) {
     api.update(data)

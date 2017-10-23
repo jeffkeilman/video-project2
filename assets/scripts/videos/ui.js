@@ -51,6 +51,7 @@ const createVideoFailure = function () {
 }
 
 const displayVideos = function (data) {
+  store.user.videos = data.videos
   data.videos.forEach((video) => {
     _buildVideo(video)
     _buildVideoMenuItem(video)
@@ -65,6 +66,8 @@ const resetVideoComponents = function () {
   $('#videoArea').empty()
   $('#selectVideoMenu').empty()
   $('#selectVideo').html('Videos ' + '<span class="caret" id="hack"></span>')
+  $('#addVideoForm').hide()
+  _clearAdd()
   $('#updateButtonSubmit').hide()
   $('#submitAddButton').show()
   _crudButtonsDisabled(false)
@@ -92,6 +95,7 @@ const noID = function () {
 
 const updateSuccess = function () {
   resetVideoComponents()
+  displayVideos({ videos: store.user.videos })
   // OHHHH SNAP! TODO: Redisplay board using local storage this time
   alert('success', 'Video updated!')
 }
@@ -106,12 +110,34 @@ const noUpdate = function () {
 }
 
 const deleteSuccess = function () {
-  // TODO: Rebuild with stored data
+  _removeVideo(store.user.videos, +$('#selectVideo').text().split('.')[0])
+  resetVideoComponents()
+  displayVideos({ videos: store.user.videos })
   alert('success', 'Video deleted!')
 }
 
 const deleteFailure = function () {
   alert('danger', 'Unable to delete video...')
+}
+
+const _removeVideo = function (videos, id) {
+  for (let x = 0; x < videos.length; x++) {
+    if (videos[x].id === id) {
+      videos.splice(x, 1)
+      break
+    }
+  }
+}
+
+const updateVideos = function (video) {
+  for (let x = 0; x < store.user.videos.length; x++) {
+    if (store.user.currVideo.id === store.user.videos[x].id) {
+      for (const key in video) {
+        store.user.videos[x][key] = video[key]
+      }
+      break
+    }
+  }
 }
 
 const _crudButtonsDisabled = function (option) {
@@ -177,5 +203,6 @@ module.exports = {
   updateFailure,
   noUpdate,
   deleteSuccess,
-  deleteFailure
+  deleteFailure,
+  updateVideos
 }

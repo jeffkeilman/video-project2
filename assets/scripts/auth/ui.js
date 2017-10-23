@@ -27,7 +27,6 @@ const displayHome = function () {
 }
 
 const displayVideos = function () {
-  // TODO: Database queries perhaps (each time? Just after login?) and display
   _navBarShift($('#nav-videos'))
   _flipViews($('#db'))
 }
