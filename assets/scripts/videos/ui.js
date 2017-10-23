@@ -44,6 +44,7 @@ const createVideo = function (data) {
   alert('success', 'Video added!')
   _buildVideo(data.video)
   _buildVideoMenuItem(data.video)
+  store.user.videos.push(data.video)
 }
 
 const createVideoFailure = function () {
