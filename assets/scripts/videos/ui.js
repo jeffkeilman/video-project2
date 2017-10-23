@@ -96,7 +96,6 @@ const noID = function () {
 const updateSuccess = function () {
   resetVideoComponents()
   displayVideos({ videos: store.user.videos })
-  // OHHHH SNAP! TODO: Redisplay board using local storage this time
   alert('success', 'Video updated!')
 }
 
