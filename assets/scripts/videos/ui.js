@@ -42,14 +42,41 @@ const changeMenuText = function (event) {
   ' <span class="caret" id="hack"></span>')
 }
 
-const _buildVideoMenuItem = function (video) {
-  $('#selectVideoMenu').append(
-    '<li><a class="dropdown-item" href="#">' + video.id + '. ' + video.title +
-      '</a></li>'
+const showInfoModal = function (data) {
+  const video = data.video
+  $('#infoModalTitle').text(video.title)
+  _buildModalBody(video)
+  $('#infoModal').modal()
+}
+
+const showFailure = function () {
+  alert('danger', 'Couldn\'t load video info. It\'s time to panic.')
+}
+
+const noID = function () {
+  alert('danger', 'Please select a video before trying that.')
+}
+
+const _buildModalBody = function (video) {
+  $('#infoModalBody').html(
+    '<div class="row">' +
+    '<div>Youtuber: ' + video.youtuber + '</div>' +
+    '</div>' +
+    '<div class="row">' +
+    '<div>Description: ' + video.description + '</div>' +
+    '</div>'
   )
 }
 
+const _buildVideoMenuItem = function (video) {
+  _prettifyVideo(video)
+  $('#selectVideoMenu').append(
+    '<li><a class="dropdown-item" href="#">' + video.id + '. ' + video.title +
+      '</a></li>')
+}
+
 const _buildVideo = function (video) {
+  _prettifyVideo(video)
   const newRow = document.createElement('div')
   $(newRow).addClass('row').html('<div class="col-xs-6">' + video.title +
     '</div><div class="col-xs-6"><a href="' + video.url + '" target="_blank">' +
@@ -64,6 +91,12 @@ const _clearAdd = function () {
   $('#descriptionText').val('')
 }
 
+const _prettifyVideo = function (video) {
+  if (video.title.length > 10) {
+    video.title = video.title.substring(0, 10) + '...'
+  }
+}
+
 module.exports = {
   showAdd,
   hideAdd,
@@ -72,5 +105,8 @@ module.exports = {
   displayVideos,
   indexFailure,
   resetVideoComponents,
-  changeMenuText
+  changeMenuText,
+  showInfoModal,
+  showFailure,
+  noID
 }

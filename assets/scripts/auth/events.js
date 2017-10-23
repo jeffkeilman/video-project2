@@ -65,10 +65,10 @@ const addEventHandlers = function () {
   $('#nav-home').on('click', ui.displayHome)
   $('#nav-videos').on('click', ui.displayVideos)
   $('#nav-changePass').on('click', ui.displayChangePass)
+  $('#isRegister').on('change', ui.showHidePassConf)
   $('#nav-logout').on('click', _onLogout)
   $('#loginRegisterForm').on('submit', _onLoginRegister)
   $('#changePass').on('submit', _onChangePass)
-  $('#isRegister').on('change', ui.showHidePassConf)
 }
 
 module.exports = {
