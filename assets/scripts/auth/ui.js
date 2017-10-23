@@ -1,5 +1,6 @@
-const store = require('../store')
 const alert = require('../alert')
+const store = require('../store')
+const videoUI = require('../videos/ui')
 
 const programViews = [
   'intro',
@@ -47,8 +48,6 @@ const signOnSuccess = function (data) {
   $('#nav-login').hide()
   _navBarShift(navVideos)
   _flipViews($('#db'))
-
-  // TODO: Display db UI
 }
 
 const signOffSuccess = function () {
@@ -81,6 +80,7 @@ const restoreInitial = function () {
   $('#nav-home').show()
   $('#nav-login').show()
   $('#intro').show()
+  videoUI.clearVideoArea()
 }
 
 const registerSuccess = function () {

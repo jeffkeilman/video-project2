@@ -1,6 +1,8 @@
 const api = require('./api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
+const videoAPI = require('../videos/api')
+const videoUI = require('../videos/ui')
 
 const _onLoginRegister = function (event) {
   event.preventDefault()
@@ -48,7 +50,14 @@ const _login = function (data) {
   }
   api.login(data)
     .then(ui.signOnSuccess)
+    .then(_loadVideos)
     .catch(ui.signOnFailure)
+}
+
+const _loadVideos = function () {
+  videoAPI.loadVideos()
+    .then(videoUI.displayVideos)
+    .catch(videoUI.indexFailure)
 }
 
 const addEventHandlers = function () {

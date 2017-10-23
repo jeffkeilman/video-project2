@@ -19,6 +19,20 @@ const createVideoFailure = function () {
   alert('danger', 'Oh no. We couldn\'t add a video. This is bad.')
 }
 
+const displayVideos = function (data) {
+  data.videos.forEach((video) => {
+    $('#videoArea').append(_buildVideo(video))
+  })
+}
+
+const indexFailure = function () {
+  alert('danger', 'Unable to load your favorites...')
+}
+
+const clearVideoArea = function () {
+  $('#videoArea').empty()
+}
+
 const _buildVideo = function (video) {
   const newRow = document.createElement('div')
   return $(newRow).addClass('row').html('<div class="col-xs-6">' + video.title +
@@ -37,5 +51,8 @@ module.exports = {
   showAdd,
   hideAdd,
   createVideo,
-  createVideoFailure
+  createVideoFailure,
+  displayVideos,
+  indexFailure,
+  clearVideoArea
 }

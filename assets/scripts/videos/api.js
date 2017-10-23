@@ -12,6 +12,17 @@ const create = function (data) {
   })
 }
 
+const loadVideos = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/videos',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
-  create
+  create,
+  loadVideos
 }
