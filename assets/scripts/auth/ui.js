@@ -80,7 +80,7 @@ const restoreInitial = function () {
   $('#nav-home').show()
   $('#nav-login').show()
   $('#intro').show()
-  videoUI.clearVideoArea()
+  videoUI.resetVideoComponents()
 }
 
 const registerSuccess = function () {

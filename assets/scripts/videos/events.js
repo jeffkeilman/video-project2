@@ -16,6 +16,7 @@ const _onVideoSubmit = function (event) {
 const addEventHandlers = function () {
   $('#addButton').on('click', ui.showAdd)
   $('#addCancelButton').on('click', ui.hideAdd)
+  $('#selectVideoMenu').on('click', '.dropdown-item', ui.changeMenuText)
   $('#addVideoForm').on('submit', _onVideoSubmit)
 }
 
