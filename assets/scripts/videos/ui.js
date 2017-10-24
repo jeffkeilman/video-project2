@@ -6,7 +6,8 @@ const videoCRUD = [
   'infoButton',
   'updateButton',
   'deleteButton',
-  'addButton'
+  'addButton',
+  'playButton'
 ]
 
 const showAdd = function (event) {
@@ -110,7 +111,7 @@ const noUpdate = function () {
 }
 
 const deleteSuccess = function () {
-  _removeVideo(store.user.videos, +$('#selectVideo').attr('data-id'))
+  _removeVideo(store.user.videos, +$('#selectVideo div').attr('data-id'))
   resetVideoComponents()
   displayVideos({ videos: store.user.videos })
   alert('success', 'Video deleted!')
