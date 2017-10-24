@@ -17,7 +17,7 @@ const _onVideoSubmit = function (event) {
 }
 
 const _onInfoClick = function () {
-  const id = $('#selectVideo').text().split('.')[0]
+  const id = $('#selectVideo div').attr('data-id')
   if (!isNaN(id)) {
     api.show(id)
       .then(ui.showInfoModal)
@@ -27,7 +27,7 @@ const _onInfoClick = function () {
 
 const _onUpdateClick = function () {
   // Run a show to get info and prefill
-  const id = $('#selectVideo').text().split('.')[0]
+  const id = $('#selectVideo div').attr('data-id')
   if (!isNaN(id)) {
     api.show(id)
       .then(ui.showAddPrefill)
@@ -48,7 +48,7 @@ const _onUpdateSubmit = function (event) {
 }
 
 const _onDeleteClick = function () {
-  const id = $('#selectVideo').text().split('.')[0]
+  const id = $('#selectVideo div').attr('data-id')
   if (!isNaN(id)) {
     api.deleteVideo(id)
       .then(ui.deleteSuccess)
@@ -68,7 +68,7 @@ const _cleanupVideo = function (video) {
 }
 
 const _onPlay = function () {
-  const id = $('#selectVideo').text().split('.')[0]
+  const id = $('#selectVideo div').attr('data-id')
   if (!isNaN(id)) {
     let url
 
@@ -83,8 +83,8 @@ const _onPlay = function () {
     const vidId = splitUrl[splitUrl.length - 1]
 
     player = YouTubePlayer('videoPlayer', {
-      height: '390',
-      width: '900'
+      height: 350,
+      width: 850
     })
 
     player.loadVideoById(vidId)

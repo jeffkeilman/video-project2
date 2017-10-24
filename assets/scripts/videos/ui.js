@@ -75,8 +75,8 @@ const resetVideoComponents = function () {
 }
 
 const changeMenuText = function (event) {
-  $('#selectVideo').html($(event.currentTarget).text() +
-  ' <span class="caret" id="hack"></span>')
+  $('#selectVideo').html('<div data-id="' + $(event.currentTarget).attr('data-id') +
+  '">' + $(event.currentTarget).text() + ' <span class="caret"></span></div>')
 }
 
 const showInfoModal = function (data) {
@@ -110,7 +110,7 @@ const noUpdate = function () {
 }
 
 const deleteSuccess = function () {
-  _removeVideo(store.user.videos, +$('#selectVideo').text().split('.')[0])
+  _removeVideo(store.user.videos, +$('#selectVideo').attr('data-id'))
   resetVideoComponents()
   displayVideos({ videos: store.user.videos })
   alert('success', 'Video deleted!')
@@ -164,7 +164,7 @@ const _buildModalBody = function (video) {
 const _buildVideoMenuItem = function (video) {
   _prettifyVideo(video)
   $('#selectVideoMenu').append(
-    '<li><a class="dropdown-item" href="#">' + video.id + '. ' + video.title +
+    '<li><a class="dropdown-item" href="#" data-id="' + video.id + '">' + video.title +
       '</a></li>')
 }
 
