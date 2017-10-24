@@ -69,25 +69,27 @@ const _cleanupVideo = function (video) {
 
 const _onPlay = function () {
   const id = $('#selectVideo').text().split('.')[0]
-  let url
+  if (!isNaN(id)) {
+    let url
 
-  for (let x = 0; x < store.user.videos.length; x++) {
-    if (store.user.videos[x].id === +id) {
-      url = store.user.videos[x].url
-      break
+    for (let x = 0; x < store.user.videos.length; x++) {
+      if (store.user.videos[x].id === +id) {
+        url = store.user.videos[x].url
+        break
+      }
     }
-  }
 
-  const splitUrl = url.split('/')
-  const vidId = splitUrl[splitUrl.length - 1]
+    const splitUrl = url.split('/')
+    const vidId = splitUrl[splitUrl.length - 1]
 
-  player = YouTubePlayer('videoPlayer', {
-    height: '390',
-    width: '900'
-  })
+    player = YouTubePlayer('videoPlayer', {
+      height: '390',
+      width: '900'
+    })
 
-  player.loadVideoById(vidId)
-    .then(ui.deployVideo())
+    player.loadVideoById(vidId)
+      .then(ui.deployVideo())
+  } else { ui.noID() }
 }
 
 const addEventHandlers = function () {
