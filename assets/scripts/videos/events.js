@@ -1,7 +1,10 @@
+import YouTubePlayer from 'youtube-player'
+
 const ui = require('./ui')
 const getFormFields = require('../../../lib/get-form-fields')
 const store = require('../store')
 const api = require('./api')
+let player
 
 const _onVideoSubmit = function (event) {
   event.preventDefault()
@@ -64,6 +67,29 @@ const _cleanupVideo = function (video) {
   return updateCount
 }
 
+const _onPlay = function () {
+  const id = $('#selectVideo').text().split('.')[0]
+  let url
+
+  for (let x = 0; x < store.user.videos.length; x++) {
+    if (store.user.videos[x].id === +id) {
+      url = store.user.videos[x].url
+      break
+    }
+  }
+
+  const splitUrl = url.split('/')
+  const vidId = splitUrl[splitUrl.length - 1]
+
+  player = YouTubePlayer('videoPlayer', {
+    height: '390',
+    width: '900'
+  })
+
+  player.loadVideoById(vidId)
+    .then(ui.deployVideo())
+}
+
 const addEventHandlers = function () {
   $('#addButton').on('click', ui.showAdd)
   $('#addCancelButton').on('click', ui.hideAdd)
@@ -73,6 +99,8 @@ const addEventHandlers = function () {
   $('#updateButtonSubmit').on('click', _onUpdateSubmit)
   $('#deleteButton').on('click', _onDeleteClick)
   $('#addVideoForm').on('submit', _onVideoSubmit)
+  $('#playButton').on('click', _onPlay)
+  $('#videoModal').on('hidden.bs.modal', () => player.destroy())
 }
 
 module.exports = {

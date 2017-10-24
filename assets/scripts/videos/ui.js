@@ -120,6 +120,10 @@ const deleteFailure = function () {
   alert('danger', 'Unable to delete video...')
 }
 
+const deployVideo = function () {
+  $('#videoModal').modal()
+}
+
 const _removeVideo = function (videos, id) {
   for (let x = 0; x < videos.length; x++) {
     if (videos[x].id === id) {
@@ -204,5 +208,6 @@ module.exports = {
   noUpdate,
   deleteSuccess,
   deleteFailure,
-  updateVideos
+  updateVideos,
+  deployVideo
 }
