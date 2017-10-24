@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>VideoDB</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+      <header>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <div class="navbar-brand">VideoDB</div>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active" id="nav-home"><a href="#">Home</a></li>
+              <li id="nav-login"><a href="#">Login</a></li>
+              <li id="nav-videos"><a href="#">Videos</a></li>
+              <li id="nav-changePass"><a href="#">Change Password</a></li>
+              <li id="nav-logout"><a href="#">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div class="alert" id="programInfo" role="alert"></div>
+
+      <section id="intro">
+        <div class="col-xs-1 col-md-3"></div>
+        <div class="col-xs-10 col-md-6">
+          <h1>VideoDB - Your personal favorites</h1>
+          <p class="description">Wouldn't it be nice if people weren't constantly spying on your
+          YouTube watching habits? Here at VideoDB, we (I) agree. A list of
+          your favorite YouTube videos hidden from the world is just a few
+          clicks and key presses away from being a reality.</p>
+        </div>
+        <div class="col-xs-1 col-md-3"></div>
+      </section>
+
+      <section id="login">
+        <div class="col-xs-4"></div>
+        <form class="col-xs-4 login-box" id="loginRegisterForm">
+          <div class="form-group">
+            <label for="emailLabel">Email address</label>
+            <input name="credentials[email]" type="email" class="form-control" id="emailLabel" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="passwordLabel">Password</label>
+            <input name="credentials[password]" type="password" class="form-control" id="passwordText" placeholder="Password" required>
+          </div>
+          <div class="form-group" id="confirmPassword">
+            <label for="passwordLabel">Confirm Password</label>
+            <input name="credentials[password_confirmation]" type="password" class="form-control" id="passwordConfText" placeholder="Password Confirmation">
+          </div>
+          <div class="form-check">
+            <!-- New users will be able to register, input will be inserted automatically -->
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" id="isRegister">
+              Register new user?
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary submit-form-button">Submit</button>
+        </form>
+        <div class="col-xs-4"></div>
+      </section>
+
+      <section id="changePass">
+        <div class="col-xs-4"></div>
+        <form class="col-xs-4 change-pass-box" id="changePassForm">
+          <div class="form-group">
+            <label for="prevPassLabel">Previous Password</label>
+            <input name="passwords[old]" type="password" class="form-control" id="oldPassText" aria-describedby="emailHelp" placeholder="Previous Password" required>
+          </div>
+          <div class="form-group">
+            <label for="curPassLabel">New Password</label>
+            <input name="passwords[new]" type="password" class="form-control" id="newPassText" placeholder="New Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary submit-form-button">Submit</button>
+        </form>
+        <div class="col-xs-4"></div>
+      </section>
+
+      <section id="db">
+        <!-- TODO: Fix mobile -->
+        <div class="row">
+          <div class="col-xs-0 col-md-4"></div>
+          <div class="title-label col-xs-0 col-md-2">Title</div>
+          <div class="url-label col-xs-0 col-md-2">URL</div>
+          <div class="col-xs-0 col-md-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-0 col-md-4"></div>
+          <div class="col-xs-12 col-md-4 pre-scrollable video-area" id="videoArea"></div>
+          <div class="col-xs-0 col-md-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-primary" id="addButton">New Favorite</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3"></div>
+          <div class="col-xs-6">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="selectVideo">
+                Videos <span class="caret" id="hack"></span>
+              </button>
+              <ul class="dropdown-menu scrollable-menu" role="menu" id="selectVideoMenu"></ul>
+              <button type="button" class="btn btn-primary" id="infoButton">Video Info</button>
+              <button type="button" class="btn btn-primary" id="updateButton">Update Video</button>
+            </div>
+          </div>
+          <div class="col-xs-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4"></div>
+          <div class="col-xs-4">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary" id="deleteButton">Remove from Favorites</button>
+              <button type="button" class="btn btn-primary" id="playButton">Play Video</button>
+            </div>
+          </div>
+          <div class="col-xs-4"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4"></div>
+          <form class="col-xs-4" id="addVideoForm">
+            <div class="form-group">
+              <label for="titleLabel">Title</label>
+              <input name="video[title]" type="text" class="form-control" placeholder="Title" id="titleText" required>
+            </div>
+            <div class="form-group">
+              <label for="urlLabel">URL</label>
+              <input name="video[url]" type="url" class="form-control" placeholder="Short YouTube URL Ex. https://youtu.be/wZZ7oFKsKzY" id="urlText" required>
+            </div>
+            <div class="form-group">
+              <label for="youtuberLabel">Youtuber</label>
+              <input name="video[youtuber]" type="text" class="form-control" placeholder="Youtuber" id="youtuberText" required>
+            </div>
+            <div class="form-group">
+              <label for="descriptionLabel">Description</label>
+              <textarea name="video[description]" class="form-control" rows="3" id="descriptionText" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitAddButton">Submit</button>
+            <button type="button" class="btn btn-primary" id="updateButtonSubmit">Update</button>
+            <button type="button" class="btn btn-primary" id="addCancelButton">Cancel</button>
+          </form>
+          <div class="col-xs-4"></div>
+        </div>
+      </section>
+
+      <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-body" id="videoPlayer"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="infoModalTitle">Title</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="infoModalBody"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
